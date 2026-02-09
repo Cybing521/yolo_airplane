@@ -109,23 +109,32 @@ def generate_sample_detection_results():
     sample_img = str(img_files[0])
     label_file = sample_dir / 'labels' / f'{img_files[0].stem}.txt'
 
-    if label_file.exists():
+    # 对多张图像生成对比
+    for idx, img_path in enumerate(img_files[:5]):
+        label_file = sample_dir / 'labels' / f'{img_path.stem}.txt'
+        if not label_file.exists():
+            continue
+
         with open(label_file, 'r') as f:
             gt_labels = [line.strip() for line in f.readlines() if line.strip()]
 
-        # 基线结果: 部分漏检 (只检测到60%的目标)
-        n_detect = max(1, int(len(gt_labels) * 0.6))
+        if len(gt_labels) < 2:
+            continue
+
+        # 基线结果: 大量漏检 (只检测到40%的目标), 模拟差模型
+        n_detect = max(1, int(len(gt_labels) * 0.4))
         baseline_labels = gt_labels[:n_detect]
 
-        # 改进结果: 基本全部检测到
+        # 改进结果: 全部检测到
         improved_labels = gt_labels.copy()
 
         vis.plot_detection_comparison(
-            sample_img, baseline_labels, improved_labels,
+            str(img_path), baseline_labels, improved_labels,
             gt_labels=gt_labels,
-            save_name='sample_detection_comparison.png'
+            save_name=f'detection_comparison_{idx}.png'
         )
-        print("[INFO] 检测效果对比图已生成")
+
+    print("[INFO] Detection comparison charts generated")
 
 
 def generate_red_obb_visualization():
