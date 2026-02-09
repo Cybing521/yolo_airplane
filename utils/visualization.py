@@ -95,8 +95,8 @@ class ResultVisualizer:
         epochs_b = range(1, len(baseline_losses['box_loss']) + 1)
         epochs_i = range(1, len(improved_losses['box_loss']) + 1)
 
-        ax1.plot(epochs_b, baseline_losses['box_loss'], 'b-', label='改进前 (Baseline)', linewidth=1.5, alpha=0.8)
-        ax1.plot(epochs_i, improved_losses['box_loss'], 'r-', label='改进后 (KPRLoss)', linewidth=1.5, alpha=0.8)
+        ax1.plot(epochs_b, baseline_losses['box_loss'], 'b-', label='Before (Baseline)', linewidth=1.5, alpha=0.8)
+        ax1.plot(epochs_i, improved_losses['box_loss'], 'r-', label='After (KPRLoss)', linewidth=1.5, alpha=0.8)
         ax1.set_xlabel('Epoch', fontsize=12)
         ax1.set_ylabel('Loss', fontsize=12)
         ax1.set_title('Comparison of Regression Loss Curves', fontsize=14)
@@ -106,8 +106,8 @@ class ResultVisualizer:
         # 总损失对比
         ax2 = axes[1]
         if 'total_loss' in baseline_losses and 'total_loss' in improved_losses:
-            ax2.plot(epochs_b, baseline_losses['total_loss'], 'b-', label='改进前 (Baseline)', linewidth=1.5, alpha=0.8)
-            ax2.plot(epochs_i, improved_losses['total_loss'], 'r-', label='改进后 (RA-YOLO)', linewidth=1.5, alpha=0.8)
+            ax2.plot(epochs_b, baseline_losses['total_loss'], 'b-', label='Before (Baseline)', linewidth=1.5, alpha=0.8)
+            ax2.plot(epochs_i, improved_losses['total_loss'], 'r-', label='After (RA-YOLO)', linewidth=1.5, alpha=0.8)
         ax2.set_xlabel('Epoch', fontsize=12)
         ax2.set_ylabel('Loss', fontsize=12)
         ax2.set_title('Comparison of Total Loss Curves', fontsize=14)
@@ -132,8 +132,8 @@ class ResultVisualizer:
         epochs_b = range(1, len(baseline_f1) + 1)
         epochs_i = range(1, len(improved_f1) + 1)
 
-        ax.plot(epochs_b, baseline_f1, 'b-', label='改进前 (Baseline)', linewidth=1.5, alpha=0.8)
-        ax.plot(epochs_i, improved_f1, 'r-', label='改进后 (RA-YOLO)', linewidth=1.5, alpha=0.8)
+        ax.plot(epochs_b, baseline_f1, 'b-', label='Before (Baseline)', linewidth=1.5, alpha=0.8)
+        ax.plot(epochs_i, improved_f1, 'r-', label='After (RA-YOLO)', linewidth=1.5, alpha=0.8)
 
         ax.set_xlabel('Epoch', fontsize=12)
         ax.set_ylabel('F1 Score', fontsize=12)
