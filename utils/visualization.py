@@ -83,7 +83,7 @@ class ResultVisualizer:
         epochs_i = range(1, len(improved_losses['box_loss']) + 1)
 
         ax1.plot(epochs_b, baseline_losses['box_loss'], 'b-', label='Before (Baseline)', linewidth=1.5, alpha=0.8)
-        ax1.plot(epochs_i, improved_losses['box_loss'], 'r-', label='After (KPRLoss)', linewidth=1.5, alpha=0.8)
+        ax1.plot(epochs_i, improved_losses['box_loss'], 'r-', label='After (ASOR-Loss)', linewidth=1.5, alpha=0.8)
         ax1.set_xlabel('Epoch', fontsize=13)
         ax1.set_ylabel('Loss', fontsize=13)
         ax1.set_title('Comparison of Regression Loss Curves', fontsize=14, fontweight='bold')

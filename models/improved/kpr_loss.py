@@ -1,11 +1,11 @@
 """
-KPRLoss - 自适应融合回归损失函数
-KPR (Kalman ProbIoU Regression) Loss for OBB Detection
+ASOR-Loss - 自适应融合回归损失函数
+ASOR (Adaptive Synergy Oriented Regression) Loss for OBB Detection
 
 本损失函数针对旋转目标检测的回归问题设计:
 1. ProbIoU: 将旋转框建模为高斯分布，计算分布间的相似度
 2. KFIoU: 基于卡尔曼滤波思想的旋转IoU
-3. KPRLoss: 自适应权重融合ProbIoU和KFIoU
+3. ASOR-Loss: 自适应权重融合ProbIoU和KFIoU
 
 优势:
 - 解决角度周期性问题(0°和180°等价)
@@ -138,9 +138,10 @@ def kfiou_loss(pred: torch.Tensor, target: torch.Tensor, eps: float = 1e-6) -> t
     return loss
 
 
-class KPRLoss(nn.Module):
+class ASORLoss(nn.Module):
     """
-    KPRLoss: 自适应融合ProbIoU和KFIoU的回归损失
+    ASOR-Loss: 自适应融合ProbIoU和KFIoU的回归损失
+    (Adaptive Synergy Oriented Regression Loss)
     
     根据训练阶段和目标特性动态调整ProbIoU和KFIoU的权重:
     - 训练初期: 侧重ProbIoU(梯度稳定，收敛快)
@@ -213,7 +214,7 @@ class RotatedBBoxLoss(nn.Module):
 
         # 回归损失
         if use_kpr:
-            self.box_loss = KPRLoss(alpha=0.6, dynamic_weight=True)
+            self.box_loss = ASORLoss(alpha=0.6, dynamic_weight=True)
         else:
             self.box_loss = None
 
@@ -241,7 +242,7 @@ class RotatedBBoxLoss(nn.Module):
 
 
 if __name__ == '__main__':
-    # 测试KPRLoss
+    # 测试ASOR-Loss
     torch.manual_seed(42)
 
     pred = torch.randn(10, 5)
@@ -255,10 +256,10 @@ if __name__ == '__main__':
     kf_l = kfiou_loss(pred, target)
     print(f"KFIoU Loss: {kf_l.mean().item():.4f}")
 
-    # KPRLoss
-    kpr = KPRLoss(alpha=0.6, dynamic_weight=True, total_epochs=200)
+    # ASOR-Loss
+    asor = ASORLoss(alpha=0.6, dynamic_weight=True, total_epochs=200)
     for epoch in [0, 50, 100, 150, 200]:
-        kpr.set_epoch(epoch)
-        loss = kpr(pred, target)
-        alpha = kpr.get_dynamic_alpha()
-        print(f"Epoch {epoch:>3d}: KPRLoss={loss.item():.4f}, alpha={alpha:.3f}")
+        asor.set_epoch(epoch)
+        loss = asor(pred, target)
+        alpha = asor.get_dynamic_alpha()
+        print(f"Epoch {epoch:>3d}: ASOR-Loss={loss.item():.4f}, alpha={alpha:.3f}")

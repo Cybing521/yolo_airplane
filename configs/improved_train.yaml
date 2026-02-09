@@ -1,4 +1,4 @@
-# 改进模型训练配置 - RA-YOLO (ASC-YOLOv8-OBB + KPRLoss)
+# 改进模型训练配置 - RA-YOLO (ASC-YOLOv8-OBB + ASOR-Loss)
 # Improved Training Configuration
 
 # 模型 (使用自定义改进模型)
