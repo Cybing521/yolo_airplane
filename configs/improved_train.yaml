@@ -1,0 +1,45 @@
+# 改进模型训练配置 - RA-YOLO (ASC-YOLOv8-OBB + KPRLoss)
+# Improved Training Configuration
+
+# 模型 (使用自定义改进模型)
+model: configs/ra_yolo_obb.yaml
+
+# 数据集
+data: configs/dataset.yaml
+
+# 训练参数
+epochs: 200
+batch: 16
+imgsz: 640
+optimizer: SGD
+lr0: 0.01
+lrf: 0.01
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3
+warmup_momentum: 0.8
+warmup_bias_lr: 0.1
+
+# 数据增强 (增强策略优化)
+hsv_h: 0.015
+hsv_s: 0.7
+hsv_v: 0.4
+degrees: 180.0
+translate: 0.1
+scale: 0.5
+shear: 0.0
+perspective: 0.0
+flipud: 0.5
+fliplr: 0.5
+mosaic: 1.0
+mixup: 0.15
+copy_paste: 0.1
+
+# 设备
+device: 0
+
+# 保存
+project: results/improved
+name: ra_yolo_obb_improved
+save: true
+save_period: 10

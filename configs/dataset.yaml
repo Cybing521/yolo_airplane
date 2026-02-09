@@ -1,0 +1,21 @@
+# 遥感飞机旋转目标检测数据集配置
+# Remote Sensing Aircraft OBB Detection Dataset Configuration
+
+# 数据集路径
+path: ../data
+train: splits/train/images
+val: splits/val/images
+test: splits/test/images
+
+# 类别数量
+nc: 1
+
+# 类别名称
+names:
+  0: aircraft
+
+# 数据集说明
+# 本数据集用于遥感图像中的飞机旋转目标检测
+# 标注格式: YOLO OBB (class x1 y1 x2 y2 x3 y3 x4 y4)
+# 总样本量: ~500张图像
+# 数据增强策略: 旋转、翻转、缩放、Mosaic、MixUp等

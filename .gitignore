@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual Environment
+venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# LaTeX auxiliary files
+latex/*.aux
+latex/*.log
+latex/*.out
+latex/*.toc
+latex/*.synctex.gz
+latex/*.fls
+latex/*.fdb_latexmk
+
+# Large model weights (track via Git LFS if needed)
+weights/*.pt
+weights/*.pth
+weights/*.onnx
+
+# Training runs (large files)
+runs/
+
+# Data (too large for git, download separately)
+# data/raw/images/
+# data/augmented/
+# data/splits/
