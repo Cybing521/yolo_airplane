@@ -17,9 +17,9 @@ venv/
 .idea/
 *.swp
 *.swo
+.DS_Store
 
 # OS
-.DS_Store
 Thumbs.db
 
 # LaTeX auxiliary files
@@ -31,15 +31,20 @@ latex/*.synctex.gz
 latex/*.fls
 latex/*.fdb_latexmk
 
-# Large model weights (track via Git LFS if needed)
+# Model weights (large binary files)
 weights/*.pt
 weights/*.pth
 weights/*.onnx
+*.pt
+!configs/*.yaml
 
-# Training runs (large files)
+# Training runs (large, regenerate via training)
 runs/
 
-# Data (too large for git, download separately)
-# data/raw/images/
-# data/augmented/
-# data/splits/
+# Raw image data (too large for git)
+air-cj/
+data/real/
+data/real_splits/
+
+# Ultralytics cache
+.config/

@@ -1,0 +1,11 @@
+# 真实遥感飞机数据集配置
+# Real Remote Sensing Aircraft OBB Detection Dataset
+
+path: /root/yolo_320/data/real_splits
+train: train/images
+val: val/images
+test: test/images
+
+nc: 1
+names:
+  0: aircraft
