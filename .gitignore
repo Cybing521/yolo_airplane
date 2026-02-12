@@ -48,3 +48,16 @@ data/real_splits/
 
 # Ultralytics cache
 .config/
+
+# Inference/generated image outputs (do not upload)
+results/comparison/Att/
+results/comparison/new_data/
+results/comparison/by_model/
+results/comparison/deliverables/02_figures/by_model/
+results/comparison/deliverables/02_figures/Att/
+results/comparison/deliverables/02_figures/new_data/
+
+# Local ad-hoc image folders
+Att/
+new_data/
+new_data_1/
